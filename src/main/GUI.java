@@ -26,7 +26,9 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 
 public class GUI extends JFrame {
-
+	String[] Games = new String[]{"Left 4 Dead", "DOTA2 Beta", "Crysis 2", "Half-Life Deathmatch", "Open Office 3,5", "Chrome", "FireFox","FileZilla","Sketchup"};
+	JLabel[] GameLabels = new JLabel[Games.length];
+	GridBagConstraints[] GameuConstraints = new GridBagConstraints[Games.length];
 	private JPanel contentPane;
 
 	/**
@@ -61,41 +63,40 @@ public class GUI extends JFrame {
 		TopPanel.setLayout(new BorderLayout(0, 0));
 		
 		JPanel UserInfoPanel = new JPanel();
+		UserInfoPanel.setBackground(Color.DARK_GRAY);
 		FlowLayout fl_UserInfoPanel = (FlowLayout) UserInfoPanel.getLayout();
 		fl_UserInfoPanel.setAlignment(FlowLayout.RIGHT);
 		TopPanel.add(UserInfoPanel, BorderLayout.NORTH);
 		
-		JTextPane txtpnTbthegr = new JTextPane();
-		txtpnTbthegr.setText("TBthegr81");
-		UserInfoPanel.add(txtpnTbthegr);
+		JLabel UsernameLabel = new JLabel("TBthegr81");
+		UsernameLabel.setFont(new Font("Lucida Sans", Font.BOLD, 25));
+		UsernameLabel.setForeground(Color.WHITE);
+		UserInfoPanel.add(UsernameLabel);
 		
 		JLabel Avatar = new JLabel("");
 		UserInfoPanel.add(Avatar);
 		Avatar.setIcon(new ImageIcon("/home/tb/Downloads/b555a82b90920fad7f3845bbef963be988ce1ff3_full.jpg"));
 		
 		JPanel SoftwareListPanel = new JPanel();
+		SoftwareListPanel.setBackground(Color.DARK_GRAY);
 		contentPane.add(SoftwareListPanel, BorderLayout.WEST);
 		GridBagLayout gbl_SoftwareListPanel = new GridBagLayout();
-		gbl_SoftwareListPanel.columnWidths = new int[]{0, 0};
-		gbl_SoftwareListPanel.rowHeights = new int[]{0, 0, 0};
+		gbl_SoftwareListPanel.columnWidths = new int[] {200, 0};
 		gbl_SoftwareListPanel.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-		gbl_SoftwareListPanel.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		SoftwareListPanel.setLayout(gbl_SoftwareListPanel);
 		
-		JButton btnLeftdead = new JButton("Left4Dead");
-		GridBagConstraints gbc_btnLeftdead = new GridBagConstraints();
-		gbc_btnLeftdead.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnLeftdead.insets = new Insets(0, 0, 5, 0);
-		gbc_btnLeftdead.gridx = 0;
-		gbc_btnLeftdead.gridy = 0;
-		SoftwareListPanel.add(btnLeftdead, gbc_btnLeftdead);
-		
-		JButton btnCrysis = new JButton("Crysis");
-		GridBagConstraints gbc_btnCrysis = new GridBagConstraints();
-		gbc_btnCrysis.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnCrysis.gridx = 0;
-		gbc_btnCrysis.gridy = 1;
-		SoftwareListPanel.add(btnCrysis, gbc_btnCrysis);
+		for(int i = 0; i < Games.length; i++)
+		{
+			GameLabels[i] = new JLabel(Games[i]);
+			GameLabels[i].setForeground(Color.WHITE);
+			GameLabels[i].setFont(new Font("Lucida Sans", Font.BOLD, 14));
+			GameuConstraints[i] = new GridBagConstraints();
+			GameuConstraints[i].fill = GridBagConstraints.HORIZONTAL;
+			GameuConstraints[i].insets = new Insets(2, 20, 2, 0);
+			GameuConstraints[i].gridx = 0;
+			GameuConstraints[i].gridy = i;
+			SoftwareListPanel.add(GameLabels[i], GameuConstraints[i]);
+		}
 		
 		JPanel MainPanel = new JPanel();
 		contentPane.add(MainPanel, BorderLayout.CENTER);
@@ -106,7 +107,7 @@ public class GUI extends JFrame {
 		SoftwareNameField.setBounds(100, 50, 500, 73);
 		MainPanel.add(SoftwareNameField);
 		SoftwareNameField.setLayout(null);
-		
+
 		JLabel SoftwareName = new JLabel("Left 4 Dead");
 		SoftwareName.setHorizontalAlignment(SwingConstants.LEFT);
 		SoftwareName.setBounds(10, 0, 169, 36);
