@@ -18,6 +18,7 @@ public class Main {
 				}
 			}
 		});
+		//new Kira_Login_Client();
 	}
 
 }
